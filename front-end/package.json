@@ -1,0 +1,67 @@
+{
+  "name": "server.js",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.50",
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
+    "icomoon-react": "^2.0.16",
+    "lodash.debounce": "^4.0.8",
+    "moment": "^2.24.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-infinite-scroll-component": "^5.0.4",
+    "react-notifications-component": "^2.4.0",
+    "react-player": "^1.15.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "react-star-ratings": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "superagent": "^5.2.2",
+    "universal-cookie": "^4.0.3"
+  },
+  "scripts": {
+    "dev": "PORT=3001 REACT_APP_CUSTOM_NODE_ENV=localhost REACT_APP_SOCKET_PORT=9001 REACT_APP_SERVER_PORT=9002 react-scripts start",
+    "buildlocal": "npm install && npm install --only=dev && webpack --env.REACT_APP_CUSTOM_NODE_ENV=localhost --env.REACT_APP_SOCKET_PORT=9001 --env.REACT_APP_SERVER_PORT=9002 --progress --config ./webpack.config.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@typescript-eslint/parser": "^2.29.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "compression-webpack-plugin": "^3.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "eslint": "^6.8.0",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.2.0",
+    "node-sass": "^4.13.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "path": "^0.12.7",
+    "terser-webpack-plugin": "^2.3.5",
+    "typescript": "^3.7.5",
+    "webpack": "4.41.5",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "3.10.2"
+  }
+}

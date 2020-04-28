@@ -1,0 +1,9 @@
+node_modules
+.idea
+client/node_modules
+**/.DS_Store
+back-end/public/*
+front-end/build
+back-end/files/test/
+back-end/files/subtitles/*
+back-end/back-end.config.js
