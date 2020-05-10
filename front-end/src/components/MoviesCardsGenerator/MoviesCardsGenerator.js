@@ -285,7 +285,6 @@ const MoviesCardsGenerator = (forwardRef((props, ref) => {
 			</Grid>
 		)
 	}
-
 	if (!isMylist)
 		return (
 			<div>
