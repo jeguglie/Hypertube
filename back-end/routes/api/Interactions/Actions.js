@@ -171,7 +171,12 @@ const getUserProfile = async (req, res) => {
 const getUserProfilePublic = async (req, res) => {
     let username = sanitize(req.params.username)
     try {
-        var infoUsers = await User.findOne({username: username})
+        var infoUsers
+        if (username == 'me') {
+            infoUsers = await User.findById(res.locals.id)
+        } else {
+            infoUsers = await User.findOne({username: username})
+        }
         if (!infoUsers) { return res.status(404).json({}) }
         var GetWatchListUser = await Watchlist.findOne({user_id: infoUsers._id})
         let watchListUser = GetWatchListUser && GetWatchListUser.movies? GetWatchListUser.movies : '';
@@ -237,7 +242,7 @@ const updateInfos = async (req, res) => {
             });
         }
 
-        if (username && getExistingUsernameFromId && !getExistingUsernameFromId.oauthID) {  getExistingUsernameFromId.username = username }
+        if (username && getExistingUsernameFromId && username != 'me') {  getExistingUsernameFromId.username = username }
         if (firstname) {  getExistingUsernameFromId.firstname = firstname }
         if (lastname) {  getExistingUsernameFromId.lastname = lastname }
         if (email) {  getExistingUsernameFromId.email = email }
@@ -347,12 +352,15 @@ const getWatchlist = async (req, res) => {
 }
 
 const getHistory = async (req, res) => {
-    let userID = res.locals.id;
-    if (!userID) { return res.status(404).json({}) }
-
+    var user = req.params.username != 'me' ? req.params.username : res.locals.id
     try {
-        let userDatas = await User.findById(userID)
-        if (!userDatas) { throw new Error ('No user found with this id: ', userID); }
+        var userDatas
+        if (user == res.locals.id) {
+            userDatas = await User.findById(user)
+        } else {
+            userDatas = await User.findOne({username: user})
+        }
+        if (!userDatas) { throw new Error ('No user found with this parameter: ', user); }
         return res.json(userDatas.history)
     } catch (err) { res.status(403).json({}) }
 }

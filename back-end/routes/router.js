@@ -23,7 +23,7 @@ module.exports = function factory(userslist) {
     // Get watchlist
     router.get('/watchlist', withAuth, interact.getWatchlist);
     // Get history
-    router.get('/history', withAuth, interact.getHistory);
+    router.get('/history/:username', withAuth, interact.getHistory);
     // Get comment
     router.get('/infos/:id', withAuth, interact.getInfos);
     // Get user infos

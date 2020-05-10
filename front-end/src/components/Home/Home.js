@@ -144,13 +144,12 @@ const Home = (forwardRef((props, ref) => {
         };
 
     useEffect(() => {
-        let _mounted = true;
         async function loadMore() {
             let selectQuery = sidebarQuery ? sidebarQuery : query;
             await axios.get(`${selectQuery}${loadPage}&${language.languageRequest}`)
                 .then(res => {
                     if (res.data && res.data.results && res.data.results.length)
-                        _mounted && setMoviesList([].concat(moviesList, res.data.results));
+                        setMoviesList([].concat(moviesList, res.data.results));
                 });
         }
         if (load) {
@@ -159,7 +158,6 @@ const Home = (forwardRef((props, ref) => {
             loadMore();
             setLoad(false);
         }
-        return () => { _mounted = false}
     }, [load, moviesList, loadPage, sidebarQuery, language]);
 
     // First load (top movies)

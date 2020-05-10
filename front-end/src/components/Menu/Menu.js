@@ -142,10 +142,11 @@ const PrimarySearchAppBar = (forwardRef((props, ref) => {
             Language: 'Langue',
             WhatsHot: "Top films",
             MoviesList: 'Ma liste',
-            Profile: 'Profil',
+            Profile: 'Editer mon profil',
             Logout: 'Déconnexion',
             Login: 'Connexion',
             Signup: 'Inscription',
+            ViewProfile: 'Voir mon profil',
             SearchMovies: 'Rechercher un film...'
 
         },
@@ -154,10 +155,11 @@ const PrimarySearchAppBar = (forwardRef((props, ref) => {
             Language: 'Language',
             WhatsHot: "What's hot",
             MoviesList: 'Movies list',
-            Profile: 'Profile',
+            Profile: 'Edit profile',
             Logout: 'Log out',
             Login: 'Log in',
             Signup: 'Sign up',
+            ViewProfile: 'View my profile',
             SearchMovies: 'Search movies...'
         }
     }
@@ -407,7 +409,8 @@ const PrimarySearchAppBar = (forwardRef((props, ref) => {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={(e) => { handleMenuClose(); e.preventDefault(); props.history.location.pathname !== '/profile' && props.history.push('/profile')} } >Profile</MenuItem>
+            <MenuItem onClick={(e) => { handleMenuClose(); e.preventDefault(); props.history.location.pathname !== '/user/me' && props.history.push('/user/me')} } >{translate[language.language].ViewProfile}</MenuItem>
+            <MenuItem onClick={(e) => { handleMenuClose(); e.preventDefault(); props.history.location.pathname !== '/profile' && props.history.push('/profile')} } >{translate[language.language].Profile}</MenuItem>
             <MenuItem onClick={handleLogout}>{translate[language.language].Logout}</MenuItem>
         </Menu>
     );

@@ -29,7 +29,7 @@ async function axiosQuery(baseURL, type) {
                         return null
                     return res.data.movie_results[0].id
                 case 'leet':
-                    if (res.data.inLeet == true)
+                    if (res.data.in1377 == true)
                         return res.data
                     return null
                 case 'yts':
@@ -47,9 +47,9 @@ const URLmagnetYTS = (hash, title) => {
     return `magnet:?xt=urn:btih:${hash}&dn=${encodeURIComponent(title)}&tr=${udpYTS.join('&tr=')}`
 }
 
-const checkQuality1377 = (leetinfos, quality) => {
-    for (let index = 0; index < leetinfos.length; index++) {
-        if (quality == leetinfos[index].quality)
+const checkQuality1377 = (info1377, quality) => {
+    for (let index = 0; index < info1377.length; index++) {
+        if (quality == info1377[index].quality)
             return index
     }
     return false
@@ -63,10 +63,10 @@ const printLeet = async (req, res, quality, imdbcode, userslist) => {
         if ( !imdbID )
             return res.sendStatus(404)
         var restReq = await axiosQuery(process.env.NODE_ENV !== 'production' ? `http://localhost:${process.env.SERVER_PORT}/api/movies/` : 'https://hypertube.jv-g.fr/api/movies/' + imdbID, 'leet');
-        var quality = checkQuality1377(restReq.leetInfo, quality)
+        var quality = checkQuality1377(restReq.torrentInfos.info1377, quality)
         if ( !restReq || quality === false)
             return res.sendStatus(404)
-        var magnetLink = restReq.leetInfo[quality].magnet
+        var magnetLink = restReq.torrentInfos.info1377[quality].magnet
         stream.initStreaming(req, res, magnetLink, restReq, res.locals.id, imdbID, userslist)
     } catch (err) { return res.sendStatus(203) }
 }

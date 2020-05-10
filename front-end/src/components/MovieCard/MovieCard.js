@@ -83,7 +83,7 @@ function SimpleDialog(props) {
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
             <DialogTitle id="simple-dialog-title">{translate[language.language].chooseSrc}</DialogTitle>
             <List>
-                {movieSources && movieSources.ytsInfo && Array.isArray(movieSources.ytsInfo) && movieSources.ytsInfo.map((obj, key) => (
+                {movieSources && movieSources.torrentInfos.infoYTS && Array.isArray(movieSources.torrentInfos.infoYTS) && movieSources.torrentInfos.infoYTS.map((obj, key) => (
                     <ListItem button onClick={() => handleListItemClick('yts-' + obj.quality.substring(0, obj.quality.length - 1))} key={key}>
                         <ListItemAvatar>
                             <Avatar className={classes.avatar}>
@@ -95,7 +95,7 @@ function SimpleDialog(props) {
                         />
                     </ListItem>
                 ))}
-                {movieSources && movieSources.leetInfo && Array.isArray(movieSources.leetInfo) && movieSources.leetInfo.map((obj, key) => (
+                {movieSources && movieSources.torrentInfos.info1377 && Array.isArray(movieSources.torrentInfos.info1377) && movieSources.torrentInfos.info1377.map((obj, key) => (
                     <ListItem button onClick={() => handleListItemClick('1377-' + obj.quality.substring(0, obj.quality.length - 1))} key={key}>
                         <ListItemAvatar>
                             <Avatar className={classes.avatar}>
@@ -279,7 +279,7 @@ const MovieCard = (forwardRef((props, ref) => {
             API.getMovieSources(props.match.params.movieId)
                 .then(res => {
                     if (res.status === 200) {
-                        if (res.data && (res.data.inYTS || res.data.inLeet )) {
+                        if (res.data && (res.data.inYTS || res.data.in1377 )) {
                             _mounted && setSubtitles(constructSubtitles(res.data.subtitles));
                             _mounted && setMovieSources(res.data);
                         }
@@ -368,7 +368,7 @@ const MovieCard = (forwardRef((props, ref) => {
     };
 
     const sourceMessage = () => {
-        if (movieSources) return selectedValue ? selectedValue : `${translate[language.language].chooseSrc} (${movieSources.ytsInfo.length + movieSources.leetInfo.length})`;
+        if (movieSources) return selectedValue ? selectedValue : `${translate[language.language].chooseSrc} (${movieSources.torrentInfos.infoYTS.length + movieSources.torrentInfos.info1377.length})`;
         else return translate[language.language].noSrc
     };
 

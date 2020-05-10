@@ -57,7 +57,7 @@ const ProfilePublic = (forwardRef((props, ref) => {
         let RecentTab = [];
         let mounted = true;
         const getMylist = async() => {
-            await API.getHistory()
+            await API.getHistory(props.match.params.username)
                 .then(res => {
                     if (res.data && res.data.length){
                         RecentTab = res.data.map((obj) => {

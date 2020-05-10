@@ -19,14 +19,22 @@ const http = domain === 'localhost' ? 'http://' : 'https://';
 const portFront = domain === 'localhost' ? `:${process.env.REACT_PORT}` : '';
 
 // Mailtrap
-let transport = nodemailer.createTransport({
+/* let transport = nodemailer.createTransport({
     host: 'smtp.mailtrap.io',
     port: 2525,
     auth: {
         user: 'dbbd9d0a415229',
         pass: 'd4ef0a653fe03c'
     }
+}); */
+
+let transport = nodemailer.createTransport({
+  sendmail: true,
+  newline: 'unix',
+  path: '/usr/sbin/sendmail'
 });
+
+
 
 // Validation
 var schema = new passwordValidator();

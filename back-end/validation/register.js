@@ -18,7 +18,8 @@ module.exports = function validateRegisterInput(data) {
   let errors = {};
 
   // Convert empty fields to an empty string so we can use validator functions
-  data.username = !isEmpty(data.username) ? data.username : "",
+  data.username = !isEmpty(data.username) ? data.username : "";
+  data.forbidden = data.username != 'me' ? data.username : ""
   data.firstname = !isEmpty(data.firstname) ? data.firstname : "";
   data.lastname = !isEmpty(data.lastname) ? data.lastname : "";
   data.email = !isEmpty(data.email) ? data.email : "";
@@ -28,6 +29,7 @@ module.exports = function validateRegisterInput(data) {
   if (!schema.validate(data.password)) errors.password = "Password must contain at least one uppercase, one number and one symbol, and at least 8 characters.";
   if (Validator.isEmpty(data.password_confirm)) errors.password_confirm = "Confirm password field is required";
   if (!Validator.equals(data.password, data.password_confirm)) errors.password_confirm = "Passwords must match";
+  if (Validator.isEmpty(data.forbidden)) errors.username = "This username is forbidden"
   if (Validator.isEmpty(data.username)) errors.username = "Username field is required"
   if (Validator.isEmpty(data.lastname)) errors.lastname = "Name field is required";
   if (Validator.isEmpty(data.firstname)) errors.firstname = "Firstname field is required";
