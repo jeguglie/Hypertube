@@ -1,5 +1,5 @@
 ## Demo
-`You can test the app` [here](https://matcha.jv-g.fr)<br>
+`You can test the app` [here](https://hypertube.jv-g.fr)<br>
 
 # Hypertube
 42 Webtorrent Streaming project<br><br>
