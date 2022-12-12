@@ -24,7 +24,7 @@
     "dotenv": "^8.2.0",
     "download": "^7.1.0",
     "ejs": "^3.0.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-jwt": "^5.3.3",
     "fluent-ffmpeg": "^2.1.2",
     "fs": "0.0.1-security",
